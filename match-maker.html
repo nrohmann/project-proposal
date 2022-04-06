@@ -7,9 +7,35 @@
 <label>
     The Chiacgo White Sox are better than the Chiacgo Cubs.
 </label>
-<select>
-    <option>Strongly Agree</option>
-    <option>Strongly Disagree</option>
+<select id="q1">
+    <option value="5">Strongly Agree</option>
+    <option value="4">Agree</option>
+    <option value="3">Neutral</option>
+    <option value="2">Disagree</option>
+    <option value="1">Strongly Disagree</option>
 </select>
+<br /><br />
+<label>
+    I like Kanye West's music.
+</label>
+<select id="q2">
+    <option value="5">Strongly Agree</option>
+    <option value="4">Agree</option>
+    <option value="3">Neutral</option>
+    <option value="2">Disagree</option>
+    <option value="1">Strongly Disagree</option>
+</select>
+<br /><br />
+
+<button onclick="calculateCompatibility()">
+    Calculate Compatibility
+</button>
+
+<script>
+    console.log("Starting JavaScript")
+    function calculateCompatibility() {
+        console.log("calculateCombatibility")
+    }
+</script>
 </body>
 </html>
