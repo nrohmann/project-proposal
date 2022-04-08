@@ -30,11 +30,24 @@
 <button onclick="calculateCompatibility()">
     Calculate Compatibility
 </button>
+<br /><br />
+<div id="compatibility"></div>
 
 <script>
     console.log("Starting JavaScript")
     function calculateCompatibility() {
+        const DESIRED_RESPONSE = [
+		5, /* strongly agree */
+		5, /* strongly agree */
+	    ]
         console.log("calculateCombatibility")
+        let question1Response = document.getElementById("q1").selectedOptions[0].value
+        let question1Compatibility = 5 - Math.abs(question1Response - DESIRED_RESPONSE[0])
+        let question2Response = document.getElementById("q2").selectedOptions[0].value
+        let question2Compatibility = 5 - Math.abs(question2Response - DESIRED_RESPONSE[1])
+        totCompatibility = question1Compatibility + question2Compatibility
+
+        document.getElementById("compatibility").innerHTML = "Your Compatibility is: " + totCompatibility
     }
 </script>
 </body>
