@@ -16,7 +16,7 @@
 </select>
 <br /><br />
 <label>
-    I like Kanye West's music.
+    Kanye West makes good music.
 </label>
 <select id="q2">
     <option value="5">Strongly Agree</option>
@@ -26,7 +26,39 @@
     <option value="1">Strongly Disagree</option>
 </select>
 <br /><br />
-
+<label>
+    The Earth is flat.
+</label>
+<select id="q3">
+    <option value="5">Strongly Agree</option>
+    <option value="4">Agree</option>
+    <option value="3">Neutral</option>
+    <option value="2">Disagree</option>
+    <option value="1">Strongly Disagree</option>
+</select>
+<br /><br />
+<label>
+    Santa Claus is real.
+</label>
+<select id="q4">
+    <option value="5">Strongly Agree</option>
+    <option value="4">Agree</option>
+    <option value="3">Neutral</option>
+    <option value="2">Disagree</option>
+    <option value="1">Strongly Disagree</option>
+</select>
+<br /><br />
+<label>
+    Humans should colonize Mars.
+</label>
+<select id="q5">
+    <option value="5">Strongly Agree</option>
+    <option value="4">Agree</option>
+    <option value="3">Neutral</option>
+    <option value="2">Disagree</option>
+    <option value="1">Strongly Disagree</option>
+</select>
+<br /><br />
 <button onclick="calculateCompatibility()">
     Calculate Compatibility
 </button>
@@ -39,15 +71,68 @@
         const DESIRED_RESPONSE = [
 		5, /* strongly agree */
 		5, /* strongly agree */
+        1, /* strongly disagree */
+        1, /* strongly disagree */
+        4 /* agree */
+
 	    ]
+
+        const WEIGHTED_DESIRED_RESPONSE = [
+        15,
+        10,
+        1,
+        1,
+        4
+
+        ]
+        const MAX_SCORE = 25
+        const MAX_SCORE_WEIGHTED = 40
+
         console.log("calculateCombatibility")
+        /*
         let question1Response = document.getElementById("q1").selectedOptions[0].value
         let question1Compatibility = 5 - Math.abs(question1Response - DESIRED_RESPONSE[0])
         let question2Response = document.getElementById("q2").selectedOptions[0].value
         let question2Compatibility = 5 - Math.abs(question2Response - DESIRED_RESPONSE[1])
-        totCompatibility = question1Compatibility + question2Compatibility
+        let question3Response = document.getElementById("q3").selectedOptions[0].value
+        let question3Compatibility = 5 - Math.abs(question3Response - DESIRED_RESPONSE[2])
+        let question4Response = document.getElementById("q4").selectedOptions[0].value
+        let question4Compatibility = 5 - Math.abs(question4Response - DESIRED_RESPONSE[3])
+        let question5Response = document.getElementById("q5").selectedOptions[0].value
+        let question5Compatibility = 5 - Math.abs(question5Response - DESIRED_RESPONSE[4])
+        */
 
-        document.getElementById("compatibility").innerHTML = "Your Compatibility is: " + totCompatibility
+        let question1ResponseWeighted = document.getElementById("q1").selectedOptions[0].value
+        let question1CompatibilityWeighted = 15 - Math.abs(question1ResponseWeighted*3 - WEIGHTED_DESIRED_RESPONSE[0])
+        let question2ResponseWeighted = document.getElementById("q2").selectedOptions[0].value
+        let question2CompatibilityWeighted = 10 - Math.abs(question2ResponseWeighted*2 - WEIGHTED_DESIRED_RESPONSE[1])
+        let question3ResponseWeighted = document.getElementById("q3").selectedOptions[0].value
+        let question3CompatibilityWeighted = 5 - Math.abs(question3ResponseWeighted - WEIGHTED_DESIRED_RESPONSE[2])
+        let question4ResponseWeighted = document.getElementById("q4").selectedOptions[0].value
+        let question4CompatibilityWeighted = 5 - Math.abs(question4ResponseWeighted - WEIGHTED_DESIRED_RESPONSE[3])
+        let question5ResponseWeighted = document.getElementById("q5").selectedOptions[0].value
+        let question5CompatibilityWeighted = 5 - Math.abs(question5ResponseWeighted - WEIGHTED_DESIRED_RESPONSE[4])
+
+        /*
+        let totCompatibility = question1Compatibility + question2Compatibility + question3Compatibility + question4Compatibility + question5Compatibility
+        let percentCompatibility = Math.ceil((totCompatibility/MAX_SCORE) * 100)
+        */
+
+        let totWeightedCompatibility = question1CompatibilityWeighted + question2CompatibilityWeighted + question3CompatibilityWeighted + question4CompatibilityWeighted + question5CompatibilityWeighted
+        let percentWeightedCompatibility = Math.ceil((totWeightedCompatibility/MAX_SCORE_WEIGHTED) * 100)
+        /*
+        document.getElementById("compatibility").innerHTML = "Your Compatibility is: " + percentCompatibility
+
+        */
+        document.getElementById("compatibility").innerHTML = "Your Weighted Compatibility is: " + percentWeightedCompatibility
+
+        if (percentWeightedCompatibility > 33) {
+            Message = "Yeah, thanks but no thanks";
+        } else if (percentCompatibility > 66) {
+            Message = "We can still be freinds, right?";
+        } else {
+            Message = "So... when are you taking me out to dinner? :)"
+        }
     }
 </script>
 </body>
